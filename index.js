@@ -33,3 +33,25 @@ function makeDeepCopy(obj) {
 
     throw new Error();
 }
+
+//---------------------------------SECOND TASK---------------------------------
+
+function selectFromInterval(arr, val1, val2) {
+
+    if (!Array.isArray(arr)) {
+        throw new Error();
+    }
+
+    if (!arr.every(num => typeof num === 'number' && isFinite(num))) {
+        throw new Error();
+    }
+
+    if (typeof val1 !== 'number' || typeof val2 !== 'number' || !isFinite(val1) || !isFinite(val2)) {
+        throw new Error();
+    }
+
+    const [MIN_VAL, MAX_VAL] = val1 < val2 ? [val1, val2] : [val2, val1];
+
+
+    return arr.filter(num => num >= MIN_VAL && num <= MAX_VAL);
+}
