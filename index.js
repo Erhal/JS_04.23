@@ -55,3 +55,26 @@ function selectFromInterval(arr, val1, val2) {
 
     return arr.filter(num => num >= MIN_VAL && num <= MAX_VAL);
 }
+
+//---------------------------------THIRD TASK---------------------------------
+
+function createIterable(from, to) {
+    if (typeof from !== 'number' || typeof to !== 'number' || to <= from) {
+        throw new Error();
+    }
+
+    return {
+        [Symbol.iterator]() {
+            let current = from;
+            return {
+                next() {
+                    if (current <= to) {
+                        return { done: false, value: current++ };
+                    } else {
+                        return { done: true };
+                    }
+                }
+            }
+        }
+    };
+}
