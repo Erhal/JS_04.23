@@ -63,3 +63,42 @@ class Calculator {
         return this.x / this.y;
     }
 }
+
+//---------------------------------THIRD TASK---------------------------------
+
+class RickAndMorty {
+    getCharacter(id) {
+        if (id === null || !isFinite(id)) {
+            throw new Error();
+        }
+        return fetch(`https://rickandmortyapi.com/api/character/${id}`)
+            .then(response => {
+                return response.json()
+            })
+            .then(data => {
+                if (data.error) {
+                    return null;
+                }
+                return data;
+            })
+            .catch(error => {
+                throw error;
+            });
+    }
+
+    async getEpisode(id) {
+        if (id === null || !isFinite(id)) {
+            throw new Error();
+        }
+        try {
+            const response = await fetch(`https://rickandmortyapi.com/api/episode/${id}`);
+            const data = await response.json();
+            if (data.error) {
+                return null;
+            }
+            return data;
+        } catch (error) {
+            throw error;
+        }
+    }
+}
