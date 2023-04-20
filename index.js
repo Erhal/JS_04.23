@@ -94,18 +94,14 @@ class LinkedList {
         this.length++;
     }
 
-    find(elem) {
-        let currentNode = this.head;
-
-        while (currentNode) {
-            if (currentNode.value === elem) {
-                return currentNode.value;
-            }
-
-            currentNode = currentNode.next;
+    find(elem, currentNode = this.head) {
+        if (!currentNode) {
+            return null;
         }
-
-        return null;
+        if (currentNode.value === elem) {
+            return currentNode.value;
+        }
+        return this.find(elem, currentNode.next);
     }
 
     toArray() {
