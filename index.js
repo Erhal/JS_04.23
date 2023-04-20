@@ -56,3 +56,82 @@ class Stack {
         return stack;
     }
 }
+
+//---------------------------------SECOND TASK---------------------------------
+
+class LinkedList {
+    constructor() {
+        this.head = null;
+        this.tail = null;
+        this.length = 0;
+    }
+
+    append(elem) {
+        const newNode = { value: elem, next: null };
+
+        if (this.length === 0) {
+            this.head = newNode;
+            this.tail = newNode;
+        } else {
+            this.tail.next = newNode;
+            this.tail = newNode;
+        }
+
+        this.length++;
+    }
+
+    prepend(elem) {
+        const newNode = { value: elem, next: null };
+
+        if (this.length === 0) {
+            this.head = newNode;
+            this.tail = newNode;
+        } else {
+            newNode.next = this.head;
+            this.head = newNode;
+        }
+
+        this.length++;
+    }
+
+    find(elem) {
+        let currentNode = this.head;
+
+        while (currentNode) {
+            if (currentNode.value === elem) {
+                return currentNode.value;
+            }
+
+            currentNode = currentNode.next;
+        }
+
+        return null;
+    }
+
+    toArray() {
+        const elements = [];
+
+        let currentNode = this.head;
+
+        while (currentNode) {
+            elements.push(currentNode.value);
+            currentNode = currentNode.next;
+        }
+
+        return elements;
+    }
+
+    static fromIterable(iterable) {
+        if (iterable === undefined || iterable === null || typeof iterable[Symbol.iterator] !== 'function') {
+            throw new Error('Not iterable');
+        }
+
+        const linkedList = new LinkedList();
+
+        for (const element of iterable) {
+            linkedList.append(element);
+        }
+
+        return linkedList;
+    }
+}
